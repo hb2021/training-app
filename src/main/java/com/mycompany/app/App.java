@@ -1,14 +1,11 @@
 package com.mycompany.app;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class App 
 {
 static Connection conn = null;
-	static PreparedStatement statement = null;
-
 	private static void makeJDBCConnection() {
  
 		try {
@@ -36,39 +33,6 @@ static Connection conn = null;
  
 	}
  
-	private static void getDataFromDB() {
- 
-		try {
-			// Requete Select MySQL
-			String getQueryStatement = "SELECT * FROM session";
- 
-			statement = conn.prepareStatement(getQueryStatement);
- 
-			// Executer la requete
-			ResultSet rs = statement.executeQuery();
- 
-			// Parser le resultat
-			while (rs.next()) {
-				String name = rs.getString("name");
-				String track = rs.getString("track");
-				String address = rs.getString("adress");
-				String date = rs.getString("date_session");
-				int nb_participants = rs.getInt("nb_participants");
-				int iscompleted = rs.getInt("iscomplete");
-				
- 
-				// Afficher le résultat
-				System.out.format("%s, %s, %s, %s, %d, %d\n", name, track, address, date, nb_participants, iscompleted);
-			}
- 
-		} catch (
- 
-		SQLException e) {
-			e.printStackTrace();
-		}
- 
-	}
- 
 	private static void log(String string) {
 		System.out.println(string);
  
@@ -79,10 +43,6 @@ static Connection conn = null;
 		try {
 			log("-------- Connexion au serveur de données MYSQL ------------");
 			makeJDBCConnection();
-			log("-------- Afficher toutes les sessions de formations ------------");
-			getDataFromDB();
-
-			statement.close();
 			conn.close(); // Fermer la connexion
  
 		} catch (SQLException e) {
