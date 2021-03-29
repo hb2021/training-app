@@ -1,7 +1,5 @@
 pipeline {
-   // Some global default variables
-    environment {
-    }
+
 
    // Some parameters
 
