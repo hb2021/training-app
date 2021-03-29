@@ -8,7 +8,7 @@ pipeline {
         string (name: 'IMAGE_NAME',       defaultValue: 'training-app',                                     description: 'Docker Image Name')
         string (name: 'IMAGE_TAG',       defaultValue: 'v1.0',                                     description: 'Docker Image tag')
         string (name: 'PHPMYADMIN_PORT',       defaultValue: '8000',                                     description: 'PHPMyAdmin Port')
-        boolean (name: 'MAVEN_TEST',       defaultValue: 'false',                                     description: 'Run Maven Test')
+        booleanParam(name: 'maventest',       defaultValue: 'false',                                     description: 'Run Maven Test')
     }
 
     tools {
